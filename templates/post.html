@@ -2,11 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>New Post</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin-top: 20px; /* Added margin to the top */
+            margin-bottom: 20px; /* margin to bottom */
+        }
+
+        form {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #ff4500; /* Red accent color */
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #ff4500; /* Red border */
+        }
+
+        input::placeholder {
+            color: #888; /* Light gray for placeholder text */
+        }
+
+        input:focus::placeholder {
+            color: transparent; /* Make placeholder text transparent on focus */
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #fff; /* White border on focus */
+        }
+
+        .btn-primary {
+            background-color: #ff4500;
+            border-color: #ff4500;
+        }
+
+        .btn-primary:hover {
+            background-color: #cc3700; /* Darker red on hover */
+            border-color: #cc3700;
+        }
+    </style>
 </head>
 <body>
-    <h1>You have 32 characters.</h1>
-    <h3>Get typing.</h3>
+    <div class="container">
+        <h1 class="text-center">You have 32 characters.</h1>
+        <h3 class="text-center">Get typing.</h3>
 
+        <form action="/submit_post" method="post">
+            <label for="post_content">Type here:</label>
+            <input type="text" id="post_content" name="post_content" maxlength="32" class="form-control" required placeholder="Here's a 32 chars long message!!">
+            <br>
+            <input type="submit" value="Post" class="btn btn-primary">
+        </form>
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies if needed -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    -->
 </body>
 </html>
