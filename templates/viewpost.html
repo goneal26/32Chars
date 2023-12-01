@@ -2,13 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin-top: 20px; /* Added margin to the top */
+            margin-bottom: 20px; /* margin to bottom */
+        }
+
+        h3, h1 {
+            color: #ff4500; /* Red accent color */
+            margin: 0; /* Remove default margin */
+        }
+
+        h3 {
+            font-size: 18px; /* Smaller font size for user_id */
+            text-align: right; /* Right-align user_id */
+        }
+
+        h1 {
+            font-size: 32px; /* Larger font size for post */
+            text-align: center; /* Center-align post */
+        }
+
+        a {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            background-color: #ff4500;
+            color: #fff;
+            border: 1px solid #ff4500; /* Red border */
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #cc3700; /* Darker red on hover */
+            border-color: #cc3700;
+        }
+
+        .btn-primary {
+            background-color: #ff4500;
+            border-color: #ff4500;
+        }
+
+        .btn-primary:hover {
+            background-color: #cc3700; /* Darker red on hover */
+            border-color: #cc3700;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h3>{{ user_id }}</h3>
         <h1>{{ post }}</h1>
+        <a href="/view_post?refresh=true" class="btn btn-primary">Random Post</a>
     </div>
 </body>
 </html>
