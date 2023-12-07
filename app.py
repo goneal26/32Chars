@@ -2,20 +2,43 @@ import hashlib
 import sqlite3
 import uuid
 from flask import Flask, render_template, request, redirect
-# import random
+import random
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
 
 app = Flask(__name__)
+
+# Initialize the scheduler
+scheduler = BackgroundScheduler()
+scheduler.start()
+
+
+# Function to clear the database
+def clear_database():
+    conn = sqlite3.connect('identifier.sqlite')
+    cursor = conn.cursor()
+
+    # Clear the 'posts' table
+    cursor.execute('DELETE FROM posts')
+
+    # Commit the changes and close the connection
+    conn.commit()
+    conn.close()
+
+
+# Schedule the task to run daily at midnight UTC using cron trigger
+scheduler.add_job(clear_database, trigger=CronTrigger(hour=0, minute=0, second=0, timezone='UTC'))
 
 
 def generate_user_id():
     # Get the machine's hardware address (MAC address)
     mac = ':'.join(['{:02x}'.format((uuid.getnode() >> elements) & 0xff) for elements in range(0, 2 * 6, 2)][::-1])
-
-    # You can add more randomization or hashing here if needed
-    # For example, you can append a random string or hash the MAC address
     mac = hashlib.sha256(mac.encode('utf-8')).hexdigest()
+    out_string = ""
+    for item in random.sample(mac, 8):
+        out_string = out_string + item
 
-    return mac
+    return out_string
 
 
 @app.route('/')
@@ -50,7 +73,7 @@ def view_post():
 @app.route('/submit_post', methods=['POST'])
 def submit_post():
     message = request.form['post_content']
-    user_id = generate_user_id()  # Replace with the actual user_id based on your authentication system
+    user_id = 'user' + generate_user_id()  # Replace with the actual user_id based on your authentication system
 
     # Connect to the database
     conn = sqlite3.connect('identifier.sqlite')
