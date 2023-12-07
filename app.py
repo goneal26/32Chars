@@ -1,8 +1,21 @@
+import hashlib
 import sqlite3
+import uuid
 from flask import Flask, render_template, request, redirect
-import random
+# import random
 
 app = Flask(__name__)
+
+
+def generate_user_id():
+    # Get the machine's hardware address (MAC address)
+    mac = ':'.join(['{:02x}'.format((uuid.getnode() >> elements) & 0xff) for elements in range(0, 2 * 6, 2)][::-1])
+
+    # You can add more randomization or hashing here if needed
+    # For example, you can append a random string or hash the MAC address
+    mac = hashlib.sha256(mac.encode('utf-8')).hexdigest()
+
+    return mac
 
 
 @app.route('/')
@@ -37,7 +50,7 @@ def view_post():
 @app.route('/submit_post', methods=['POST'])
 def submit_post():
     message = request.form['post_content']
-    user_id = 1  # Replace with the actual user_id based on your authentication system
+    user_id = generate_user_id()  # Replace with the actual user_id based on your authentication system
 
     # Connect to the database
     conn = sqlite3.connect('identifier.sqlite')
