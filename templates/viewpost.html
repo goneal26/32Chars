@@ -23,19 +23,17 @@
             margin-bottom: 20px; /* margin to bottom */
         }
 
-        h3, h1 {
+        h1 {
             color: #ff4500; /* Red accent color */
             margin: 0; /* Remove default margin */
+            font-size: 32px; /* Larger font size for post */
+            text-align: center; /* Center-align post */
         }
 
         h3 {
             font-size: 18px; /* Smaller font size for user_id */
-            text-align: right; /* Right-align user_id */
-        }
-
-        h1 {
-            font-size: 32px; /* Larger font size for post */
-            text-align: center; /* Center-align post */
+            text-align: left;
+            color: #ff4500; /* Red accent color */
         }
 
         a {
@@ -67,10 +65,13 @@
 </head>
 <body>
     <div class="container">
-        <h3 style="color: white; text-align: left;">View post</h3>
-        <h3>{{ user_id }}</h3>
-        <h1>{{ post }}</h1>
+        <div class="left">
+            <h3 style="color: white;">View post</h3>
+            <h3>{{ user_id }}</h3>
+            <h1>{{ post }}</h1>
+        </div>
         <a href="/view_post?refresh=true" class="btn btn-primary">Random Post</a>
+        <a href="/home" class="btn btn-primary">Back</a>
     </div>
 </body>
 </html>

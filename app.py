@@ -74,7 +74,7 @@ def view_post():
 @app.route('/submit_post', methods=['POST'])
 def submit_post():
     message = request.form['post_content']
-    user_id = 'user' + generate_user_id()  # Replace with the actual user_id based on your authentication system
+    user_id = 'user_' + generate_user_id()  # Replace with the actual user_id based on your authentication system
 
     # Connect to the database
     conn = sqlite3.connect('identifier.sqlite')
