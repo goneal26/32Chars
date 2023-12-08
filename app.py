@@ -19,7 +19,7 @@ def clear_database():
     cursor = conn.cursor()
 
     # Clear the 'posts' table
-    cursor.execute('DELETE FROM posts') # could also use truncate table
+    cursor.execute('TRUNCATE TABLE posts')  # could also use truncate table
 
     # Commit the changes and close the connection
     conn.commit()
@@ -30,6 +30,7 @@ def clear_database():
 scheduler.add_job(clear_database, trigger=CronTrigger(hour=0, minute=0, second=0, timezone='UTC'))
 
 
+# this works well enough for a unique user id function for now
 def generate_user_id():
     # Get the machine's hardware address (MAC address)
     mac = ':'.join(['{:02x}'.format((uuid.getnode() >> elements) & 0xff) for elements in range(0, 2 * 6, 2)][::-1])
