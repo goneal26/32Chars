@@ -19,7 +19,7 @@ def clear_database():
     cursor = conn.cursor()
 
     # Clear the 'posts' table
-    cursor.execute('DELETE FROM posts')
+    cursor.execute('DELETE FROM posts') # could also use truncate table
 
     # Commit the changes and close the connection
     conn.commit()
@@ -49,7 +49,7 @@ def create_post():  # put application's code here
 @app.route('/view_post')
 def view_post():
     # Connect to the database
-    conn = sqlite3.connect('identifier.sqlite')  # Update with your actual database name
+    conn = sqlite3.connect('identifier.sqlite')
     cursor = conn.cursor()
 
     # Get a random post from the 'posts' table
