@@ -7,6 +7,7 @@
     <title>Your Page Title</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -40,19 +41,41 @@
             background-color: #cc3700;
             border-color: #cc3700;
         }
+
+        #logo {
+            font-weight: bold;
+            color: #fff;
+            font-size: 16em; /* Adjust the font size as needed */
+            text-shadow: 4px 4px 4px #ff4500; /* Red text outline */
+        }
+
     </style>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>Your Header</h1>
+            <h1 id="logo">32</h1>
         </header>
 
         <!-- Your buttons -->
-        <button class="btn btn-primary">New Post</button>
-        <button class="btn btn-primary">View Post</button>
+        <button class="btn btn-primary" id="newPostBtn">New Post</button>
+        <button class="btn btn-primary" id="viewPostBtn">View Post</button>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            // Handle click on New Post button
+            $("#newPostBtn").click(function () {
+                window.location.href = "/new_post"; // Redirect to the Flask route
+            });
+
+            // Handle click on View Post button
+            $("#viewPostBtn").click(function () {
+                window.location.href = "/view_post"; // Redirect to the Flask route
+            });
+        });
+    </script>
 </body>
 
 </html>

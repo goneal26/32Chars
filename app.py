@@ -43,7 +43,12 @@ def generate_user_id():
 
 
 @app.route('/')
-def create_post():  # put application's code here
+def home():
+    return render_template('home.html')
+
+
+@app.route('/new_post')
+def create_post():
     return render_template('newpost.html')
 
 
