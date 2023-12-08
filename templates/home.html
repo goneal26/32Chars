@@ -42,6 +42,11 @@
             border-color: #cc3700;
         }
 
+        .disabled-btn {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
         #logo {
             font-weight: bold;
             color: #fff;
@@ -59,8 +64,13 @@
         </header>
 
         <!-- Your buttons -->
-        <button class="btn btn-primary" id="newPostBtn">New Post</button>
-        <button class="btn btn-primary" id="viewPostBtn">View Post</button>
+        {% if session['has_posted'] %}
+            <button class="btn btn-primary disabled-btn" id="newPostBtn" disabled>New Post</button>
+            <button class="btn btn-primary" id="viewPostBtn">View Post</button>
+        {% else %}
+            <button class="btn btn-primary" id="newPostBtn">New Post</button>
+            <button class="btn btn-primary disabled-btn" id="viewPostBtn" disabled>View Post</button>
+        {% endif %}
     </div>
 
     <script>

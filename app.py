@@ -8,6 +8,10 @@ from apscheduler.triggers.cron import CronTrigger
 
 app = Flask(__name__)
 
+
+app.secret_key = 'secret_key_goes_here'
+# for session mgmt, since I'm not deploying I'm not super worried about a secure one
+
 # Initialize the scheduler
 scheduler = BackgroundScheduler()
 scheduler.start()
@@ -15,6 +19,8 @@ scheduler.start()
 
 # Function to clear the database
 def clear_database():
+    session['has_posted'] = False
+
     conn = sqlite3.connect('identifier.sqlite')
     cursor = conn.cursor()
 
@@ -44,6 +50,7 @@ def generate_user_id():
 
 @app.route('/')
 def home():
+    session.setdefault('has_posted', False)  # set flag to false by default
     return render_template('home.html')
 
 
@@ -92,9 +99,10 @@ def submit_post():
     conn.commit()
     conn.close()
 
+    session['has_posted'] = True
+
     return redirect('/view_post')  # Redirect to the home page or any other page after submitting the post
 
 
 if __name__ == '__main__':
     app.run()
-    print('hello!')
