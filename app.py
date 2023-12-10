@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 app.secret_key = 'secret_key_goes_here'
-# for session mgmt, since I'm not deploying I'm not super worried about a secure one
+# for session mgmt, since I'm not deploying rn I'm not super worried about a secure one
 
 # Initialize the scheduler
 scheduler = BackgroundScheduler()
