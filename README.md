@@ -19,7 +19,7 @@ These instructions will help you set up and run the project on your local machin
 git clone https://github.com/goneal26/32Chars.git
 cd 32Chars
 ```
-
+``
 2) Enter virtual environment
 
 **Windows**
